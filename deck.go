@@ -30,3 +30,8 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// Deals cards from the deck to meet the handSize passed.
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
+}
