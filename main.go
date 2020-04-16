@@ -16,27 +16,37 @@ import "fmt"
 //	fmt.Println(cards)
 //}
 
-type person struct {
-	firstName string
-	lastName  string
-}
-
 type contactInfo struct {
 	email   string
 	zipcode int
 }
 
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
 // Main Caller for using structs
 func main() {
-	alex := person{
-		firstName: "Alex",
-		lastName:  "Anderson"}
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Faro",
+		contactInfo: contactInfo{
+			email:   "jim@example.com",
+			zipcode: 12345,
+		},
+	}
 
-	var mary person
+	jim.updateName("Bob")
+	jim.print()
+}
 
-	mary.lastName = "Murphy"
-	mary.firstName = "Mary"
+// Shows pass by reference for persistent value assignment.
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
+}
 
-	fmt.Printf("%+v", alex)
-	fmt.Printf("%+v", mary)
+func (p person) print() {
+	fmt.Printf("%+v", p)
 }
