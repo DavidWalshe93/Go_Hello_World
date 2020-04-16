@@ -1,9 +1,15 @@
+// David Walshe
+// 16/04/2020
+
 package main
 
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
+	"os"
 	"strings"
+	"time"
 )
 
 // Create a new type of deck which
@@ -46,6 +52,38 @@ func (d deck) toString() string {
 }
 
 // Writes a deck's contents to a file.
-func (d deck) saveToDeck(fileName string) error {
-	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+func (d deck) saveToDeck(fileName string) {
+	err := ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+}
+
+// Read a deck to from a file.
+func (d deck) newDeckFromFile(fileName string) deck {
+	bs, err := ioutil.ReadFile(fileName)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	cards := strings.Split(string(bs), ",")
+
+	return cards
+}
+
+// Shuffle a decks contents
+func (d deck) shuffle() {
+	// Create random number generator.
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		// Shuffle cards.
+		newPosition := r.Intn(len(d) - 1)
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
+
 }
