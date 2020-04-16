@@ -8,6 +8,8 @@ func main() {
 	cards = append(cards, newCard())
 
 	cards.print()
+
+	newDeck()
 }
 
 // Returns a new card name
