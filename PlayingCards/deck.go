@@ -1,7 +1,7 @@
 // David Walshe
 // 16/04/2020
 
-package main
+package PlayingCards
 
 import (
 	"fmt"
@@ -17,7 +17,7 @@ import (
 type deck []string
 
 // Creates a new deck
-func newDeck() deck {
+func NewDeck() deck {
 	cards := deck{}
 	suits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
 	values := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
@@ -47,13 +47,13 @@ func deal(d deck, handSize int) (deck, deck) {
 }
 
 // Converts a deck type as a comma separated string.
-func (d deck) toString() string {
+func (d deck) ToString() string {
 	return strings.Join(d, ",")
 }
 
 // Writes a deck's contents to a file.
-func (d deck) saveToFile(fileName string) {
-	err := ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+func (d deck) SaveToFile(fileName string) {
+	err := ioutil.WriteFile(fileName, []byte(d.ToString()), 0666)
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
@@ -61,7 +61,7 @@ func (d deck) saveToFile(fileName string) {
 }
 
 // Read a deck to from a file.
-func (d deck) newDeckFromFile(fileName string) deck {
+func (d deck) NewDeckFromFile(fileName string) deck {
 	bs, err := ioutil.ReadFile(fileName)
 
 	if err != nil {
@@ -75,7 +75,7 @@ func (d deck) newDeckFromFile(fileName string) deck {
 }
 
 // Shuffle a decks contents
-func (d deck) shuffle() {
+func (d deck) Shuffle() {
 	// Create random number generator.
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)

@@ -1,7 +1,7 @@
 // David Walshe
 // 16/04/2020
 
-package main
+package PlayingCards
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 )
 
 func TestNewDeck(t *testing.T) {
-	d := newDeck()
+	d := NewDeck()
 
 	if len(d) != 52 {
 		t.Errorf("Expected deck lenght of 52, but got %v", len(d))
@@ -31,8 +31,8 @@ func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
 		fmt.Println("_decktesting does not exist")
 	}
 
-	d := newDeck()
-	d.saveToFile("_decktesting")
+	d := NewDeck()
+	d.SaveToFile("_decktesting")
 
 	loadedDeck := d.newDeckFromFile("_decktesting")
 

@@ -5,13 +5,27 @@ package main
 
 import "fmt"
 
-// Main Caller
+// Main Caller for Playing Cards
+//func main() {
+//	// Create a slice
+//	cards := PlayingCards.NewDeck()
+//
+//	cards.SaveToFile("myDeck.txt")
+//
+//	cards.Shuffle()
+//	fmt.Println(cards)
+//}
+
+type person struct {
+	firstName string
+	lastName  string
+}
+
+// Main Caller for using structs
 func main() {
-	// Create a slice
-	cards := newDeck()
+	alex := person{
+		firstName: "Alex",
+		lastName:  "Anderson"}
 
-	cards.saveToFile("myDeck.txt")
-
-	cards.shuffle()
-	fmt.Println(cards)
+	fmt.Println(alex)
 }
