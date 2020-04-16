@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 // Create a new type of deck which
 // is a slice of type strings.
@@ -34,4 +38,14 @@ func (d deck) print() {
 // Deals cards from the deck to meet the handSize passed.
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// Converts a deck type as a comma separated string.
+func (d deck) toString() string {
+	return strings.Join(d, ",")
+}
+
+// Writes a deck's contents to a file.
+func (d deck) saveToDeck(fileName string) error {
+	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 }

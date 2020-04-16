@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Main Caller
 func main() {
 	// Create a slice
@@ -7,6 +9,6 @@ func main() {
 
 	hand, remainingDeck := deal(cards, 5)
 
-	hand.print()
-	remainingDeck.print()
+	fmt.Println(remainingDeck.toString())
+	fmt.Println(hand.toString())
 }
