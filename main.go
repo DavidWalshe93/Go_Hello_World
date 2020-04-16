@@ -1,12 +1,13 @@
 package main
 
-import "fmt"
-
 // Main Caller
 func main() {
-	card := "Ace of Spades"
+	// Create a slice
+	cards := deck{newCard(), newCard()}
+	// Append a new value and return a new slice for assignment.
+	cards = append(cards, newCard())
 
-	fmt.Println(card)
+	cards.print()
 }
 
 // Returns a new card name
