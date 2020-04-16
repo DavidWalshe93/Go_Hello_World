@@ -52,7 +52,7 @@ func (d deck) toString() string {
 }
 
 // Writes a deck's contents to a file.
-func (d deck) saveToDeck(fileName string) {
+func (d deck) saveToFile(fileName string) {
 	err := ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
 	if err != nil {
 		fmt.Println("Error:", err)
