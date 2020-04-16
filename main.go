@@ -21,11 +21,22 @@ type person struct {
 	lastName  string
 }
 
+type contactInfo struct {
+	email   string
+	zipcode int
+}
+
 // Main Caller for using structs
 func main() {
 	alex := person{
 		firstName: "Alex",
 		lastName:  "Anderson"}
 
-	fmt.Println(alex)
+	var mary person
+
+	mary.lastName = "Murphy"
+	mary.firstName = "Mary"
+
+	fmt.Printf("%+v", alex)
+	fmt.Printf("%+v", mary)
 }
